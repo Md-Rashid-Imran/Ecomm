@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
-import { ProductCard } from "./ProductCard";
+import { useEffect, useState, useContext } from "react";
+import { HOF, ProductCard } from "./ProductCard";
 import Skeleton from "./Skeleton";
 import { Link } from "react-router-dom";
+import UserContext from "../utils/UserContext";
 
 export const Products = () => {
   const [newItems, setNewItems] = useState([]);
@@ -9,12 +10,16 @@ export const Products = () => {
   const [top, setTop] = useState(false);
   const [search, setSearch] = useState("");
 
+  const user = useContext(UserContext);
+
   const fetchData = async () => {
     const data = await fetch("https://fakestoreapi.com/products");
     const resData = await data.json();
     setNewItems(resData); //changes
     setOriginalItems(resData); //always constant
   };
+
+  const HOFComponent = HOF(ProductCard); // This HOF is a Higher Order Component
 
   useEffect(() => {
     fetchData();
@@ -68,12 +73,19 @@ export const Products = () => {
           >
             Search
           </button>
+          <div>
+            <input className="border border-black px-2 py-1" type="text" value={user.name} onChange={(e)=> user.setUserName(e.target.value)}/>
+          </div>
         </div>
       </div>
 
       <div className="flex flex-wrap justify-center gap-6">
         {newItems.map((product) => (
-          <Link key={product.id} to={`/product/${product.id}`}><ProductCard product={product} /></Link>
+          <Link key={product.id} to={`/product/${product.id}`}>
+            {
+              product.rating.rate >= 4 ? <HOFComponent product={product}/> : <ProductCard product={product} />
+            }
+          </Link>
         ))}
       </div>
     </div>

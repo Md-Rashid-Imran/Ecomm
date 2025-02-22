@@ -17,3 +17,14 @@ export const ProductCard = ({ product }) => {
     </div>
   );
 };
+
+export const HOF = (ProductCard) => {
+  return (props) => {
+    return (
+      <div className="relative">
+        <span className="bg-black text-white absolute z-10 mx-1 my-1 px-4 py-1 rounded-md">Best Seller</span>
+        <ProductCard {...props}/>
+      </div>
+    );
+  };
+};

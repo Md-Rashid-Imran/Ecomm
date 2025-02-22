@@ -1,7 +1,13 @@
+import Accordian from "./Accordian";
+import { useState } from "react";
 const Men = () => {
+  const [open, setOpen] = useState(0);
   return (
-    <div className="h-screen w-screen flex items-center justify-center">
-      <h1 className="font-6xl">MEN Page</h1>
+    <div className="max-w-6xl mx-auto mt-10">
+      <h1 className="font-6xl mb-5">Filter Options</h1>
+      {
+        ["Brand", "Ideal For", "Type", "Rating"].map((title, index) => <Accordian key={index} title={title} open={index === open ? true : false} setOpen = {() => setOpen(index)}/>)
+      }
     </div>
   );
 };
