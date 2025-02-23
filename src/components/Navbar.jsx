@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 export const Navbar = () => {
   const [btn, setBtn] = useState("Light");
-
+  const cartItems = useSelector((store) => store.cart.cartItems);
+  console.log(cartItems);
+  
   const btnToggle = () => {
     setBtn(btn === "Light" ? "Dark" : "Light");
   };
@@ -28,6 +31,9 @@ export const Navbar = () => {
         </li>
         <li className="cursor-pointer hover:text-gray-300">
           <Link to ="/Grocery">Grocery</Link>
+        </li>
+        <li className="cursor-pointer hover:text-gray-300">
+          <Link to='/cart'>Cart-{cartItems.length}</Link>
         </li>
         <li>
           <button

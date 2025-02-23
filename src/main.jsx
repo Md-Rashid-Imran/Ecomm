@@ -6,6 +6,7 @@ import "./index.css";
 import Layout from "./Layout";
 import App from "./App";
 import Kids from "./components/Kids";
+import Cart from "./components/Cart";
 // import About from "./components/About";
 import Men from "./components/Men";
 import Women from "./components/Women";
@@ -30,7 +31,8 @@ const appRouter = createBrowserRouter([
       { path: "/women", element: <Women /> },
       { path: "/product/:productId", element: <ProductDetails /> },
       { path: "/about", element:<Suspense fallback={<PostDetailSkeleton/>}><About/></Suspense>},
-      { path: "/Grocery", element:<Suspense fallback={<Skeleton/>}><Grocery/></Suspense>}
+      { path: "/grocery", element:<Suspense fallback={<Skeleton/>}><Grocery/></Suspense>},
+      { path: "/cart", element:<Cart />}
     ],
   },
 ]);

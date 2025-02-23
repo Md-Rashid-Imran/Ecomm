@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 export const ProductCard = ({ product }) => {
+
   return (
     <div className="w-80 h-full flex flex-col items-center justify-center border p-5 bg-white rounded-lg shadow-lg transition duration-300 hover:scale-105">
       <img
@@ -14,6 +15,7 @@ export const ProductCard = ({ product }) => {
         Rating: {product.rating.rate}
       </p>
       <p className="text-lg font-bold text-blue-700 mt-1">₹{product.price}</p>
+      
     </div>
   );
 };
