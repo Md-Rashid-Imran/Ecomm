@@ -8,34 +8,42 @@ const Cart = () => {
     const clearCartItemHandler = () => {
         dispatch(clearItems());
     }
-    return (
-        <div className='max-w-5xl mx-auto mt-10'>
-            <div className='flex items-center justify-between'>
-                <h1 className='font-bold text-xl'>Cart - ({cartItems.length})</h1>
-                <button onClick={clearCartItemHandler} className="bg-black text-white rounded-md px-4 py-1">Clear Cart</button>
+    return cartItems.length===0?(
+        
+        <h1 className='text-3xl font-bold text-center m-auto'>CART IS <span className='text-red-600'>EMPTY</span> , ADD ITEMS</h1>
+        
+    ):(
+        (
+            <div className="w-full flex items-center flex-col my-5">
+                <div className="flex  flex-wrap gap-5 m-4">
+                    <h1 className='font-bold text-xl'>Cart - ({cartItems.length})</h1>
+                    <button onClick={clearCartItemHandler} className="bg-black text-white rounded-md px-4 py-1">Clear Cart</button>
+                </div>
+               
+    
+                <div className="flex flex-wrap h-full w-full justify-evenly items-center">
+                    {
+                        cartItems.map((item) => (
+                            <div className=" flex items-center flex-col justify-center border p-3  rounded-lg m-2 h-80 w-90">
+                                <img
+                                    src={item.image}
+                                    alt={item.title}
+                                    className="w-30 h-30 object-contain border rounded-lg"
+                                />
+                                <h2 className="text-lg font-bold mt-3 text-gray-800 text-center">
+                                    {item.title}
+                                </h2>
+                                <p className="text-md font-semibold text-orange-600 mt-1">
+                                    Rating: {item.rating.rate}
+                                </p>
+                                <p className="text-lg font-bold text-blue-700 mt-1">₹{item.price}</p>
+                            </div>
+                        ))
+                    }
+                </div>
             </div>
-            {
-                cartItems.map((item) => (
-                    <div className="w-80 h-full border p-5 bg-white rounded-lg flex items-center justify-center">
-                        <div className="w-200 flex flex-col items-center justify-center border p-5 bg-white rounded-lg">
-                            <img
-                                src={item.image}
-                                alt={item.title}
-                                className="w-40 h-40 object-contain border rounded-lg"
-                            />
-                            <h2 className="text-lg font-bold mt-3 text-gray-800 text-center">
-                                {item.title}
-                            </h2>
-                            <p className="text-md font-semibold text-orange-600 mt-1">
-                                Rating: {item.rating.rate}
-                            </p>
-                            <p className="text-lg font-bold text-blue-700 mt-1">₹{item.price}</p>
-                        </div>
-                    </div>
-                ))
-            }
-        </div>
-    )
-}
+        )
+    )}
+
 
 export default Cart
