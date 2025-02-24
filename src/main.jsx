@@ -7,6 +7,9 @@ import Layout from "./Layout";
 import App from "./App";
 import Kids from "./components/Kids";
 import Cart from "./components/Cart";
+import Memo from "./components/Memo";
+import Ref from "./components/Ref";
+import Login from "./components/Login";
 // import About from "./components/About";
 import Men from "./components/Men";
 import Women from "./components/Women";
@@ -32,7 +35,10 @@ const appRouter = createBrowserRouter([
       { path: "/product/:productId", element: <ProductDetails /> },
       { path: "/about", element:<Suspense fallback={<PostDetailSkeleton/>}><About/></Suspense>},
       { path: "/grocery", element:<Suspense fallback={<Skeleton/>}><Grocery/></Suspense>},
-      { path: "/cart", element:<Cart />}
+      { path: "/cart", element:<Cart />},
+      { path: "/memo", element:<Memo />},
+      { path: "/ref", element:<Ref />},
+      { path: "/login", element:<Login />}
     ],
   },
 ]);
