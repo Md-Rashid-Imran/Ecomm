@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { clearItems } from '../Store/cartSlice';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
     const cartItems = useSelector((store) => store.cart.cartItems);
@@ -10,7 +11,14 @@ const Cart = () => {
     }
     return cartItems.length===0?(
         
-        <h1 className='text-3xl font-bold text-center m-auto'>CART IS <span className='text-red-600'>EMPTY</span> , ADD ITEMS</h1>
+        <div className="flex items-center justify-center w-full h-screen flex-col">
+            <h1 className='text-3xl font-bold text-center '>CART IS <span className='text-red-600'>EMPTY</span> , ADD ITEMS</h1>
+            <br />
+            <Link to="/">
+            <span className='text-3xl font-bold text-center text-blue-600'>View Products</span>
+            </Link>
+        
+        </div>
         
     ):(
         (
